@@ -9,14 +9,29 @@
 <body>
     <h1>My Personal Notes</h1>
 
+    <h2>Create a New Note</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Save Note</button>
+    </form>
+
+    <hr>
+
+    <h2>Your Notes</h2>
+
     {% for note in notes %}
         <article>
-            <h2>{{ note.title }}</h2>
+            <h3>{{ note.title }}</h3>
             <p>{{ note.content }}</p>
 
             <p>
                 <small>Created: {{ note.created_at }}</small>
             </p>
+
             <p>
                 <small>Last updated: {{ note.updated_at }}</small>
             </p>
