@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Notes App</title>
+</head>
+<body>
+    <h1>My Personal Notes</h1>
+
+    {% for note in notes %}
+        <article>
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.content }}</p>
+
+            <p>
+                <small>Created: {{ note.created_at }}</small>
+            </p>
+            <p>
+                <small>Last updated: {{ note.updated_at }}</small>
+            </p>
+        </article>
+    {% empty %}
+        <p>You haven't created any notes yet.</p>
+    {% endfor %}
+</body>
+</html>
