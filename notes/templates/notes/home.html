@@ -21,6 +21,25 @@
 
     <hr>
 
+    
+<h2>Search Notes</h2>
+
+<form method="GET" action="{% url 'notes:home' %}">
+    <input
+        type="text"
+        name="q"
+        placeholder="Search notes by title..."
+        value="{{ search_query }}"
+    >
+
+    <button type="submit">Search</button>
+</form>
+
+<p>
+    <a href="{% url 'notes:home' %}">Clear Search</a>
+</p>
+
+
     <h2>Your Notes</h2>
 
     {% for note in notes %}
@@ -29,7 +48,7 @@
         <a href="{% url 'notes:detail' note.pk %}">
         {{ note.title }}
         </a>
-        
+
     </h3>
             <p>{{ note.content }}</p>
 
@@ -41,8 +60,14 @@
                 <small>Last updated: {{ note.updated_at }}</small>
             </p>
         </article>
-    {% empty %}
+    
+{% empty %}
+    {% if search_query %}
+        <p>No notes found for "{{ search_query }}". Try another search.</p>
+    {% else %}
         <p>You haven't created any notes yet.</p>
-    {% endfor %}
+    {% endif %}
+{% endfor %}
+
 </body>
 </html>

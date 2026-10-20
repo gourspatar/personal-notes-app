@@ -4,6 +4,8 @@ from .forms import NoteForm
 
 
 def home(request):
+    search_query = request.GET.get("q", "")
+
     if request.method == "POST":
         form = NoteForm(request.POST)
 
@@ -18,9 +20,13 @@ def home(request):
 
     notes = Note.objects.all().order_by("-created_at")
 
+    if search_query:
+        notes = notes.filter(title__icontains=search_query)
+
     context = {
         "notes": notes,
         "form": form,
+        "search_query": search_query,
     }
 
     return render(request, "notes/home.html", context)
