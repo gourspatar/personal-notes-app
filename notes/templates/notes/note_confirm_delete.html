@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete {{ note.title }} | Personal Notes</title>
+</head>
+<body>
+    <h1>Delete Note</h1>
+
+    <p>Are you sure you want to delete "{{ note.title }}"?</p>
+
+    <p>This action cannot be undone.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete Note</button>
+    </form>
+
+    <p>
+        <a href="{% url 'notes:detail' note.pk %}">
+            Cancel and return to note
+        </a>
+    </p>
+</body>
+</html>

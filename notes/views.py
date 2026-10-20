@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Note
 from .forms import NoteForm
 
@@ -62,3 +62,17 @@ def note_edit(request, pk):
     }
 
     return render(request, "notes/note_edit.html", context)
+
+
+def note_delete(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+
+    if request.method == "POST":
+        note.delete()
+        return redirect("notes:home")
+
+    context = {
+        "note": note,
+    }
+
+    return render(request, "notes/note_confirm_delete.html", context)
