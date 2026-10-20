@@ -19,6 +19,12 @@
         <small>Last updated: {{ note.updated_at }}</small>
     </p>
 
+    
+<a href="{% url 'notes:edit' note.pk %}">Edit this note</a>
+
+<p>
     <a href="{% url 'notes:home' %}">Back to all notes</a>
+</p>
+
 </body>
 </html>
