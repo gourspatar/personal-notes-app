@@ -25,7 +25,12 @@
 
     {% for note in notes %}
         <article>
-            <h3>{{ note.title }}</h3>
+    <h3>
+        <a href="{% url 'notes:detail' note.pk %}">
+        {{ note.title }}
+        </a>
+        
+    </h3>
             <p>{{ note.content }}</p>
 
             <p>

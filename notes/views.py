@@ -24,3 +24,13 @@ def home(request):
     }
 
     return render(request, "notes/home.html", context)
+
+
+def note_detail(request, pk):
+    note = Note.objects.get(pk=pk)
+
+    context = {
+        "note": note,
+    }
+
+    return render(request, "notes/note_detail.html", context)
