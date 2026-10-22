@@ -33,7 +33,7 @@ def home(request):
 
 
 def note_detail(request, pk):
-    note = Note.objects.get(pk=pk)
+    note = get_object_or_404(Note, pk=pk)
 
     context = {
         "note": note,
@@ -43,7 +43,7 @@ def note_detail(request, pk):
 
 
 def note_edit(request, pk):
-    note = Note.objects.get(pk=pk)
+    note = get_object_or_404(Note, pk=pk)
 
     if request.method == "POST":
         form = NoteForm(request.POST)
